@@ -14,20 +14,26 @@ int main()
         cin >> integerVector[i];
     }
 
+    vector<int> differenceVector(vectorSize + 2);
+    vector<int> prefixVector(vectorSize + 2);
+
     while (queries--)
     {
         int leftPosition, rightPosition, integerValue;
         cin >> leftPosition >> rightPosition >> integerValue;
 
-        for (int i = leftPosition; i <= rightPosition; i++)
-        {
-            integerVector[i] = integerVector[i] + integerValue;
-        }
+        differenceVector[leftPosition] = differenceVector[leftPosition] + integerValue;
+        differenceVector[rightPosition + 1] = differenceVector[rightPosition + 1] - integerValue;
     }
 
     for (int i = 1; i <= vectorSize; i++)
     {
-        cout << integerVector[i] << " ";
+        prefixVector[i] = prefixVector[i - 1] + differenceVector[i];
+    }
+
+    for (int i = 1; i <= vectorSize; i++)
+    {
+        cout << integerVector[i] + prefixVector[i] << " ";
     }
 
     return 0;
