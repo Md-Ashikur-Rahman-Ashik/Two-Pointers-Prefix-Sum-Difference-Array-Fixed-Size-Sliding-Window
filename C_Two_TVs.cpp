@@ -21,11 +21,26 @@ int main()
     }
 
     long long int sum = 0;
+    bool flag = true;
 
-    for(auto [key, value] : integerMap){
+    for (auto [key, value] : integerMap)
+    {
         sum = sum + value;
+        if (sum > 2)
+        {
+            flag = false;
+            break;
+        }
     }
-    
+
+    if (flag)
+    {
+        cout << "YES";
+    }
+    else
+    {
+        cout << "NO";
+    }
 
     return 0;
 }
