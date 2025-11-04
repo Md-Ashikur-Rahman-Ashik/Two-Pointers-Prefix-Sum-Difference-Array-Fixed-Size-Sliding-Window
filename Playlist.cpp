@@ -3,36 +3,23 @@ using namespace std;
 
 int main()
 {
-    int vectorSize;
-    cin >> vectorSize;
-    vector<int> integerVector(vectorSize);
+    int mapSize;
+    cin >> mapSize;
+    map<int, int> indexMap;
 
-    map<int, int> integerMap;
+    int answer = 0;
 
-    priority_queue<int> integerQueue;
-
-    int count = 0;
-
-    for (int i = 0; i < vectorSize; i++)
+    for (int i = 1, j = 1; i <= mapSize; i++)
     {
         int integerValue;
         cin >> integerValue;
-        integerVector[i] = integerValue;
 
-        if (integerMap[integerValue] == 0)
-        {
-            count++;
-            integerMap[integerValue]++;
-        }
-        else
-        {
-            integerQueue.push(count);
-            integerMap[integerValue]++;
-            count = 1;
-        }
+        j = max(j, indexMap[integerValue] + 1);
+        indexMap[integerValue] = i;
+        answer = max(answer, i - j + 1);
     }
 
-    cout << integerQueue.top();
+    cout << answer << '\n';
 
     return 0;
 }
