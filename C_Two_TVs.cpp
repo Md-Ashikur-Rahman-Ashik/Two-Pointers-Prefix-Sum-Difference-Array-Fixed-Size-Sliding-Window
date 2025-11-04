@@ -17,7 +17,7 @@ int main()
         cin >> leftIndex >> rightIndex;
 
         integerMap[leftIndex]++;
-        integerMap[rightIndex - 1]++;
+        integerMap[rightIndex + 1]--;
     }
 
     long long int sum = 0;
