@@ -37,7 +37,7 @@ int main()
     {
         count = count + queryVector[i];
         changeVector[pairVector[i].first.first] = changeVector[pairVector[i].first.first] + (pairVector[i].second * count);
-        changeVector[pairVector[i].first.second + 1] = changeVector[pairVector[i].first.second] - (pairVector[i].second * count);
+        changeVector[pairVector[i].first.second + 1] = changeVector[pairVector[i].first.second + 1] - (pairVector[i].second * count);
     }
 
     count = 0;
