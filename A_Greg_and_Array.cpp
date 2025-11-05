@@ -40,5 +40,13 @@ int main()
         changeVector[pairVector[i].first.second + 1] = changeVector[pairVector[i].first.second] - (pairVector[i].second * count);
     }
 
+    count = 0;
+    for (int i = 1; i <= vectorSize; i++)
+    {
+        count = count + changeVector[i];
+        integerVector[i] = integerVector[i] + count;
+        cout << integerVector[i] << " ";
+    }
+
     return 0;
 }
