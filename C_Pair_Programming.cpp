@@ -1,33 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-int main()
+main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    int testcase;
-    cin >> testcase;
-
-    while (testcase--)
+    int t;
+    cin >> t;
+    while (t--)
     {
         int k, n, m;
         cin >> k >> n >> m;
-        
-        vector<int> a(n);
-        for (int i = 0; i < n; i++)
+
+        int a[n], b[m], c[n + m], gg = 0;
+
+        for (int &x : a)
+            cin >> x;
+        for (int &x : b)
+            cin >> x;
+
+        merge(a, a + n, b, b + m, c);
+
+        for (int x : c)
         {
-            cin >> a[i];
+            k = k + (!x);
+            if (x > k)
+            {
+                gg = 1;
+            }
         }
 
-        vector<int> b(m);
-        for (int i = 0; i < m; i++)
-        {
-            cin >> b[i];
-        }
-        
-        
+        if (gg)
+            cout << -1;
+        else
+            for (int x : c)
+                cout << x << ' ';
+        cout << '\n';
     }
-
-    return 0;
 }
