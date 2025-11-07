@@ -14,51 +14,30 @@ int main()
         int stringSize, desiredBlack;
         cin >> stringSize >> desiredBlack;
 
-        int goalOfBlack = desiredBlack;
-
         string inputString;
         cin >> inputString;
 
-        int maxBlack = INT_MIN;
-        int countBlack = 0;
-        int countWhite = 0;
+        long long int goalOfBlack = desiredBlack, countWhite = 0;
 
-        for (auto individualCharacter : inputString)
+        for (int i = 0; i < goalOfBlack; i++)
         {
-            if (individualCharacter == 'B')
-            {
-                countBlack++;
-                maxBlack = max(maxBlack, countBlack);
-            }
-            else
-            {
-                if (goalOfBlack > 0 && goalOfBlack - maxBlack > 0)
-                {
-                    goalOfBlack--;
-                    countWhite++;
-                }
-                else if (goalOfBlack > 0 && maxBlack == INT_MIN)
-                {
-                    goalOfBlack--;
-                    countWhite++;
-                }
-
-                if (countBlack > 0)
-                {
-                    maxBlack = max(maxBlack, countBlack);
-                    countBlack = 0;
-                }
-            }
+            if (inputString[i] == 'W')
+                countWhite++;
         }
 
-        if (maxBlack >= desiredBlack)
+        goalOfBlack = countWhite;
+
+        for (int i = desiredBlack; i < stringSize; i++)
         {
-            cout << 0 << "\n";
+            if (inputString[i - desiredBlack] == 'W')
+                countWhite--;
+            if (inputString[i] == 'W')
+                countWhite++;
+
+            goalOfBlack = min(goalOfBlack, countWhite);
         }
-        else
-        {
-            cout << countWhite << "\n";
-        }
+
+        cout << goalOfBlack << "\n";
     }
 
     return 0;
